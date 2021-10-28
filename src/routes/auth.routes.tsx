@@ -9,9 +9,11 @@ const { Navigator, Screen } = createNativeStackNavigator()
 const AuthRoutes = () => {
   return (
     <Navigator 
-      initialRouteName='SignIn'
       screenOptions={{
         headerShown: false,
+        contentStyle: {
+          backgroundColor: 'transparent'
+        }
       }}
     >
       <Screen name="SignIn" component={SignIn} />

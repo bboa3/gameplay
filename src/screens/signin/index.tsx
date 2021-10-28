@@ -4,9 +4,16 @@ import styles from "./styles"
 
 import ButtonIcon from  '../../components/ButtonIcon'
 
-import illustrationImg from '../../assets/illustration.png';
+import illustrationImg from '../../assets/illustration.png'
+import { useNavigation } from "@react-navigation/native"
+
 
 const SignIn = () => {
+  const navigation = useNavigation()
+
+  const handleSignIn = () => {
+    navigation.navigate('Home' as never)
+  }
   return (
     <View style={styles.container}> 
       <Image 
@@ -24,7 +31,10 @@ const SignIn = () => {
           favoritos com seus amigos
         </Text>
         
-        <ButtonIcon title='Entrar com Discord' activeOpacity={0.6} />
+        <ButtonIcon 
+          title='Entrar com Discord' 
+          onPress={handleSignIn}
+        />
       </View>
       </View>
     )
