@@ -11,6 +11,7 @@ import styles from './styles'
 interface Props extends RectButtonProps {
   title: string,
   icon: React.FC<SvgProps>
+  hasCheckBox?: boolean
   checked?: boolean
 }
 
@@ -18,23 +19,30 @@ const Category: React.FC<Props> = ({
   title,
   icon: Icon,
   checked = false,
+  hasCheckBox = false,
   ...rest
 }) => {
+  const { secondary85, secondary70, secondary50, secondary40 } = theme.colors
 
   return (
     <RectButton {...rest} >
       <LinearGradient
         style={styles.container}
-        colors={[theme.colors.secondary50, theme.colors.secondary70]}
+        colors={[secondary50, secondary70]}
       >
-        <View 
-          style={[styles.content, {opacity: checked ? 1 : 0.4}]}
+        <LinearGradient 
+          style={[styles.content, {opacity: checked ? 1 : 0.5}]}
+          colors={[ checked ? secondary85 : secondary50, secondary40]}
         >
-          <View 
-            style={
-              checked ? styles.checked : styles.check
-            } 
-          />
+          {
+            hasCheckBox && (
+              <View 
+                style={
+                  checked ? styles.checked : styles.check
+                } 
+              />
+            )
+          }
 
           <Icon 
             width={48} 
@@ -46,7 +54,7 @@ const Category: React.FC<Props> = ({
           >
             {title}
           </Text>
-        </View>
+        </LinearGradient>
       </LinearGradient>
     </RectButton>
   )
